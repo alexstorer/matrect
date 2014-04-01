@@ -1,4 +1,5 @@
-function drag_rect(imloc)
+function [f, this_p] = drag_rect(imloc)
+global CONTINUE;
 
 %figure('WindowButtonMotionFcn',@figButtonMotion);
 imshow(imloc)
@@ -10,8 +11,6 @@ set(f,'KeyReleaseFcn',@keyup);
 
 ax = gca();
 last_pt = [0 0 1; 0 0 -1];
-loc_pt = [0 0 1; 0 0 -1];
-
 
 np = 1; % number of patches to create
 p = zeros(1,np); % patch handles
@@ -38,7 +37,12 @@ rotating = 0;
 scalex = 0;
 scaley = 0;
 moving = 0;
-titlestr = 'Click box to move. Key options: c, r, x, y';
+
+if CONTINUE
+    titlestr = 'Close figure to continue. Key options: c, r, x, y, n';
+else
+    titlestr = 'Close figure to quit. Key options: c, r, x, y, n';
+end
 
 for k = 1
     sides = 4;
@@ -50,7 +54,6 @@ for k = 1
     %clr = sqrt(rand(1,3)); % shape Color
     %clr =  [0.8098    0.890    0.19215];
     p(k) = patch(x{k},y{k},clr);
-    get(p(k))
     set(p(k),'UserData',k,'ButtonDownFcn',{@patchButtonDown,p(k)},'FaceAlpha',[alphaval]);
 end
 axis equal
@@ -69,7 +72,6 @@ this_k = 1;
     end
 
     function buttonup(varargin)
-        disp('Button up!')
         if patch_clicked
             patch_clicked = ~patch_clicked;
             moving = 0;
@@ -78,7 +80,6 @@ this_k = 1;
 
 
     function keypress(varargin)
-        varargin{2}.Key
         switch varargin{2}.Key
             case 'r'
                 title('Rotating: move mouse up and down to rotate','FontSize',14)
@@ -93,6 +94,14 @@ this_k = 1;
                 title('Toggle color','FontSize',14)
                 a = get(this_p,'FaceAlpha');
                 set(this_p,'FaceAlpha',alphaval-a);
+            case 'n'
+                CONTINUE = 1-CONTINUE;
+                if CONTINUE
+                    titlestr = 'Close figure to continue. Key options: c, r, x, y, n';
+                else
+                    titlestr = 'Close figure to quit. Key options: c, r, x, y, n';
+                end
+                title('Toggle whether you wish to continue','FontSize',14)
         end        
     end
 
@@ -109,6 +118,8 @@ this_k = 1;
                 scaley = 0;
             case 'c'
                 title(titlestr,'FontSize',14)
+            case 'n'
+                title(titlestr,'FontSize',14)                
         end
         
     end
@@ -131,7 +142,7 @@ this_k = 1;
         elseif moving
             offset = [curr_pt(1,1) curr_pt(1,2)];
         end
-        transformPatch()
+        transformPatch();
     end
 
     function transformPatch

@@ -5,7 +5,7 @@ matrect
 
 To use, make sure the files are in your path.
 
-Sample Call:
+#### Sample Call:
 
 `collect_data('/Users/astorer/Dev/matrect/img','alex')`
 

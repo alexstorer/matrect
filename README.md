@@ -10,7 +10,7 @@ To use, make sure the files are in your path.
 `collect_data('/Users/astorer/Dev/matrect/img','alex')`
 
 The first argument is the path to the image files.
-The second argument is the name of the person drawing rectangles.  Their data will be stored in, e.g., `alex.dat`.
+The second argument is the name of the person drawing rectangles.  Their data will be stored in, e.g., `alex.mat`.
 
 ### Options
 

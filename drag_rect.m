@@ -8,9 +8,6 @@ set(f,'WindowButtonMotionFcn',@figButtonMotion);
 set(f,'WindowButtonUpFcn',@buttonup);
 set(f,'KeyPressFcn',@keypress);
 set(f,'KeyReleaseFcn',@keyup);
-hold on;
-centerpt = plot(0,0);
-rotpt = plot(0,0);
 
 ax = gca();
 last_pt = [0 0 1; 0 0 -1];

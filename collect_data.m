@@ -11,6 +11,9 @@ function [f, this_p] = collect_data(direc,id)
         s = struct('id',id,'lastimg','','data',{{}});
     end
     imgs = dir(direc);
+    if size(imgs,1)==0
+        error('Directory not found!  Please check your input and try again.');
+    end
 
     imgsc = struct2cell(imgs);    
     imgnames = imgsc(1,:);

@@ -109,6 +109,9 @@ this_k = 1;
             case '4'
                 title('Scaling Y-dimension: move mouse down to scale','FontSize',14)
                 scaley_down = 1;                
+            case '0'
+                title('Resetting position!','FontSize',14)
+                
             case 'c'
                 title('Toggle color','FontSize',14)
                 a = get(this_p,'FaceAlpha');
@@ -147,6 +150,9 @@ this_k = 1;
             case '4'
                 title(titlestr,'FontSize',14)
                 scaley_down = 0;                                
+            case '0'
+                title(titlestr,'FontSize',14)
+                doReset();
             case 'c'
                 title(titlestr,'FontSize',14)
             case 'n'
@@ -251,6 +257,11 @@ this_k = 1;
         set(this_p,'XData',pts(1,:)');
         set(this_p,'YData',pts(2,:)');
         doTranslate(curr_location(1),curr_location(2));
+    end
+
+    function doReset()
+        set(this_p,'XData',[100 -100 -100 100]);
+        set(this_p,'YData',[100 100 -100 -100]);
     end
 
     function [cx, cy] = getCenter()

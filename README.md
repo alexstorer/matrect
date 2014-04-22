@@ -18,6 +18,7 @@ The second argument is the name of the person drawing rectangles.  Their data wi
 * `r` --  Press and hold to use mouse to rotate box
 * `x` --  Press and hold to scale x direction of box
 * `y` --  Press and hold to scale y direction of box
+* `0` --  Press to reset to initial position
 * `1` --  Press and hold to move one side of the box in the x direction
 * `2` --  Press and hold to move one side of the box in the x direction
 * `3` --  Press and hold to move one side of the box in the y direction
